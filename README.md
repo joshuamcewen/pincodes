@@ -11,6 +11,14 @@ It's also useful to note that some keys on the PIN pad appear to be more worn/us
 represents how worn each key looks, from most worn to least: [5,1,2,8,7,4,0,3,6,9]
 
 Rewards:
+
 - 4 points are awarded for determining all possible PIN codes for the example above
 - 3 further points are awarded for completing the challenge in a unique choice of language amongst other participants
-- 3 further points are awarded for ordering your list of possible PIN numbers by order of likelihood*, given the above 'wear' data
+- 3 further points are awarded for ordering your list of possible PIN numbers by order of likelihood*, given the above '
+  wear' data
+
+## Testing
+
+- As part of the Actions pipeline, tests will be performed.
+- Once such test is for the PIN code `97516`, for which the result will be printed to stdout for verification.
+- Alternatively, run `go test` to run the tests locally.
