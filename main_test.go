@@ -5,7 +5,6 @@ import (
 	"testing"
 )
 
-// this: is a func
 func TestSplitDigits(t *testing.T) {
 	var cases = []struct {
 		Number   int
@@ -22,6 +21,27 @@ func TestSplitDigits(t *testing.T) {
 
 		if !reflect.DeepEqual(expected, got) {
 			t.Errorf("Expected: %v, Got: %v", expected, got)
+		}
+	}
+}
+
+func TestGetIndexes(t *testing.T) {
+	var cases = []struct {
+		Number   int
+		Expected []int
+	}{
+		{Number: 1, Expected: []int{0, 0}},
+		{Number: 5, Expected: []int{1, 1}},
+		{Number: 9, Expected: []int{2, 2}},
+		{Number: 0, Expected: []int{3, 1}},
+	}
+
+	for _, c := range cases {
+		row, column := getIndexes(c.Number)
+		expected := c.Expected
+
+		if row != expected[0] || column != expected[1] {
+			t.Errorf("Expected: %v, Got: %v", expected, []int{row, column})
 		}
 	}
 }

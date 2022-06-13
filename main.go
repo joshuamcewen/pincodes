@@ -16,3 +16,7 @@ func splitDigits(number int) []int {
 
 	return digits
 }
+
+func getIndexes(number int) (int, int) {
+	return 0, 0
+}
