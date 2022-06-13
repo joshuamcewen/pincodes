@@ -10,9 +10,9 @@ func TestSplitDigits(t *testing.T) {
 		Number   int
 		Expected []int
 	}{
-		{Number: 10, Expected: []int{0, 1}},
+		{Number: 10, Expected: []int{1, 0}},
 		{Number: 0, Expected: []int{0}},
-		{Number: 1234, Expected: []int{4, 3, 2, 1}},
+		{Number: 1234, Expected: []int{1, 2, 3, 4}},
 	}
 
 	for _, c := range cases {
@@ -92,7 +92,7 @@ func TestGetPermutations(t *testing.T) {
 		Number   int
 		Expected []int
 	}{
-		{Number: 46, Expected: []int{55, 15, 75, 45, 53, 56, 13, 59, 16, 19, 73, 76, 43, 79, 46, 49}},
+		{Number: 46, Expected: []int{55, 15, 75, 45, 53, 56, 13, 59, 16, 19, 73, 43, 76, 46, 79, 49}},
 		{Number: 1, Expected: []int{1, 2, 4}},
 		{Number: 8, Expected: []int{5, 8, 7, 0, 9}},
 	}

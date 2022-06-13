@@ -1,5 +1,10 @@
 package pincodes
 
+import (
+	"sort"
+	"strconv"
+)
+
 // splitDigits parses an integer and returns an array of integers representing each digit.
 func splitDigits(number int) []int {
 	var digits []int
@@ -12,6 +17,10 @@ func splitDigits(number int) []int {
 	for n != 0 {
 		digits = append(digits, n%10)
 		n = n / 10
+	}
+
+	for i, j := 0, len(digits)-1; i < j; i, j = i+1, j-1 {
+		digits[i], digits[j] = digits[j], digits[i]
 	}
 
 	return digits
@@ -80,15 +89,48 @@ func getPossibleDigits(number int) []int {
 var digitsByWear = []int{5, 1, 2, 8, 7, 4, 0, 3, 6, 9}
 
 func getDigitPriority(number int) int {
-	for i, v := range digitsByWear {
-		if v == number {
-			return len(digitsByWear) - i
+	digits := splitDigits(number)
+	priority := 0
+
+	for _, digit := range digits {
+		for i, v := range digitsByWear {
+			if v == digit {
+				priority += len(digitsByWear) - i
+			}
 		}
 	}
 
-	return -1
+	return priority
 }
 
 func getPermutations(number int) []int {
-	return []int{}
+	digits := splitDigits(number)
+	var combinations [][]int
+
+	for _, digit := range digits {
+		combinations = append(combinations, getPossibleDigits(digit))
+	}
+
+	var accumulator = combinations[0]
+
+	// For each array of digits...
+	for i := 1; i < len(combinations); i++ {
+		var updated []int
+
+		//	For each digit in that array...
+		for _, n := range combinations[i] {
+			// For each number already in the accumulator...
+			for _, a := range accumulator {
+				combination, _ := strconv.Atoi(strconv.Itoa(a) + strconv.Itoa(n))
+				updated = append(updated, combination)
+			}
+		}
+
+		accumulator = updated
+	}
+
+	sort.Slice(accumulator, func(i int, j int) bool {
+		return getDigitPriority(accumulator[i]) > getDigitPriority(accumulator[j])
+	})
+	return accumulator
 }
