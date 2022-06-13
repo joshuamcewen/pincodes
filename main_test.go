@@ -66,3 +66,23 @@ func TestGetPossibleDigits(t *testing.T) {
 		}
 	}
 }
+
+func TestGetDigitPriority(t *testing.T) {
+	var cases = []struct {
+		Number   int
+		Expected int
+	}{
+		{Number: 5, Expected: 10},
+		{Number: 9, Expected: 1},
+		{Number: 7, Expected: 6},
+	}
+
+	for _, c := range cases {
+		got := getDigitPriority(c.Number)
+		expected := c.Expected
+
+		if expected != got {
+			t.Errorf("Expected: %d, Got: %d", expected, got)
+		}
+	}
+}

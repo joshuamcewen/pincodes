@@ -76,3 +76,7 @@ func getPossibleDigits(number int) []int {
 
 	return digits
 }
+
+func getDigitPriority(number int) int {
+	return 0
+}
