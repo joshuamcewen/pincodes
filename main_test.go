@@ -86,3 +86,23 @@ func TestGetDigitPriority(t *testing.T) {
 		}
 	}
 }
+
+func TestGetPermutations(t *testing.T) {
+	var cases = []struct {
+		Number   int
+		Expected []int
+	}{
+		{Number: 46, Expected: []int{55, 15, 75, 45, 53, 56, 13, 59, 16, 19, 73, 76, 43, 79, 46, 49}},
+		{Number: 1, Expected: []int{1, 2, 4}},
+		{Number: 8, Expected: []int{5, 8, 7, 0, 9}},
+	}
+
+	for _, c := range cases {
+		got := getPermutations(c.Number)
+		expected := c.Expected
+
+		if !reflect.DeepEqual(expected, got) {
+			t.Errorf("Expected: %v, Got: %v", expected, got)
+		}
+	}
+}

@@ -88,3 +88,7 @@ func getDigitPriority(number int) int {
 
 	return -1
 }
+
+func getPermutations(number int) []int {
+	return []int{}
+}
