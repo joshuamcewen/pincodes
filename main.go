@@ -43,3 +43,36 @@ func getIndexes(number int) (int, int) {
 
 	return r, c
 }
+
+func getPossibleDigits(number int) []int {
+	var digits = []int{number}
+
+	var rows, columns = len(keypad), len(keypad[0])
+	var r, c = getIndexes(number)
+
+	// Left
+	if c-1 >= 0 && keypad[r][c-1] != -1 {
+		left := keypad[r][c-1]
+		digits = append(digits, left)
+	}
+
+	// Right
+	if c+1 <= columns-1 && keypad[r][c+1] != -1 {
+		right := keypad[r][c+1]
+		digits = append(digits, right)
+	}
+
+	// Up
+	if r-1 >= 0 {
+		up := keypad[r-1][c]
+		digits = append(digits, up)
+	}
+
+	// Down
+	if r+1 <= rows-1 && keypad[r+1][c] != -1 {
+		down := keypad[r+1][c]
+		digits = append(digits, down)
+	}
+
+	return digits
+}

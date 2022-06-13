@@ -45,3 +45,24 @@ func TestGetIndexes(t *testing.T) {
 		}
 	}
 }
+
+func TestGetPossibleDigits(t *testing.T) {
+	var cases = []struct {
+		Number   int
+		Expected []int
+	}{
+		{Number: 1, Expected: []int{1, 2, 4}},
+		{Number: 5, Expected: []int{5, 4, 6, 2, 8}},
+		{Number: 9, Expected: []int{9, 8, 6}},
+		{Number: 0, Expected: []int{0, 8}},
+	}
+
+	for _, c := range cases {
+		got := getPossibleDigits(c.Number)
+		expected := c.Expected
+
+		if !reflect.DeepEqual(expected, got) {
+			t.Errorf("Expected: %v, Got: %v", expected, got)
+		}
+	}
+}
