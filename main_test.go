@@ -1,6 +1,7 @@
 package pincodes
 
 import (
+	"encoding/json"
 	"fmt"
 	"reflect"
 	"testing"
@@ -110,5 +111,7 @@ func TestGetPermutations(t *testing.T) {
 
 func TestGetPermutations97516(t *testing.T) {
 	permutations := getPermutations(97516)
-	fmt.Println(permutations)
+	json, _ := json.Marshal(permutations)
+
+	fmt.Printf("%s", json)
 }
