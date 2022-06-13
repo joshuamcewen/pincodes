@@ -17,6 +17,29 @@ func splitDigits(number int) []int {
 	return digits
 }
 
+var keypad = [4][3]int{
+	{1, 2, 3},
+	{4, 5, 6},
+	{7, 8, 9},
+	{-1, 0, -1},
+}
+
 func getIndexes(number int) (int, int) {
-	return 0, 0
+	var rows, columns = len(keypad), len(keypad[0])
+	var r, c = 0, 0
+
+	for r < rows && c < columns {
+		if keypad[r][c] == number {
+			break
+		}
+
+		if c == columns-1 {
+			c = 0
+			r++
+		} else {
+			c++
+		}
+	}
+
+	return r, c
 }
