@@ -9,16 +9,16 @@ import (
 
 func TestSplitDigits(t *testing.T) {
 	var cases = []struct {
-		Number   string
+		Pin      string
 		Expected []string
 	}{
-		{Number: "10", Expected: []string{"1", "0"}},
-		{Number: "0", Expected: []string{"0"}},
-		{Number: "1234", Expected: []string{"1", "2", "3", "4"}},
+		{Pin: "10", Expected: []string{"1", "0"}},
+		{Pin: "0", Expected: []string{"0"}},
+		{Pin: "1234", Expected: []string{"1", "2", "3", "4"}},
 	}
 
 	for _, c := range cases {
-		got := splitDigits(c.Number)
+		got := splitDigits(c.Pin)
 		expected := c.Expected
 
 		if !reflect.DeepEqual(expected, got) {
@@ -29,17 +29,17 @@ func TestSplitDigits(t *testing.T) {
 
 func TestGetIndexes(t *testing.T) {
 	var cases = []struct {
-		Number   string
+		Digit    string
 		Expected []int
 	}{
-		{Number: "1", Expected: []int{0, 0}},
-		{Number: "5", Expected: []int{1, 1}},
-		{Number: "9", Expected: []int{2, 2}},
-		{Number: "0", Expected: []int{3, 1}},
+		{Digit: "1", Expected: []int{0, 0}},
+		{Digit: "5", Expected: []int{1, 1}},
+		{Digit: "9", Expected: []int{2, 2}},
+		{Digit: "0", Expected: []int{3, 1}},
 	}
 
 	for _, c := range cases {
-		row, column := getIndexes(c.Number)
+		row, column := getIndexes(c.Digit)
 		expected := c.Expected
 
 		if row != expected[0] || column != expected[1] {
@@ -50,17 +50,17 @@ func TestGetIndexes(t *testing.T) {
 
 func TestGetPossibleDigits(t *testing.T) {
 	var cases = []struct {
-		Number   string
+		Digit    string
 		Expected []string
 	}{
-		{Number: "1", Expected: []string{"1", "2", "4"}},
-		{Number: "5", Expected: []string{"5", "4", "6", "2", "8"}},
-		{Number: "9", Expected: []string{"9", "8", "6"}},
-		{Number: "0", Expected: []string{"0", "8"}},
+		{Digit: "1", Expected: []string{"1", "2", "4"}},
+		{Digit: "5", Expected: []string{"5", "4", "6", "2", "8"}},
+		{Digit: "9", Expected: []string{"9", "8", "6"}},
+		{Digit: "0", Expected: []string{"0", "8"}},
 	}
 
 	for _, c := range cases {
-		got := getPossibleDigits(c.Number)
+		got := getPossibleDigits(c.Digit)
 		expected := c.Expected
 
 		if !reflect.DeepEqual(expected, got) {
@@ -71,16 +71,16 @@ func TestGetPossibleDigits(t *testing.T) {
 
 func TestGetDigitPriority(t *testing.T) {
 	var cases = []struct {
-		Number   string
+		Digit    string
 		Expected int
 	}{
-		{Number: "5", Expected: 10},
-		{Number: "9", Expected: 1},
-		{Number: "7", Expected: 6},
+		{Digit: "5", Expected: 10},
+		{Digit: "9", Expected: 1},
+		{Digit: "7", Expected: 6},
 	}
 
 	for _, c := range cases {
-		got := getDigitPriority(c.Number)
+		got := getDigitPriority(c.Digit)
 		expected := c.Expected
 
 		if expected != got {
@@ -91,17 +91,17 @@ func TestGetDigitPriority(t *testing.T) {
 
 func TestGetPermutations(t *testing.T) {
 	var cases = []struct {
-		Number   string
+		Pin      string
 		Expected []string
 	}{
-		{Number: "46", Expected: []string{"55", "15", "75", "45", "53", "56", "13", "59", "16", "19", "73", "43", "76", "46", "79", "49"}},
-		{Number: "1", Expected: []string{"1", "2", "4"}},
-		{Number: "8", Expected: []string{"5", "8", "7", "0", "9"}},
-		{Number: "01", Expected: []string{"81", "82", "01", "02", "84", "04"}},
+		{Pin: "46", Expected: []string{"55", "15", "75", "45", "53", "56", "13", "59", "16", "19", "73", "43", "76", "46", "79", "49"}},
+		{Pin: "1", Expected: []string{"1", "2", "4"}},
+		{Pin: "8", Expected: []string{"5", "8", "7", "0", "9"}},
+		{Pin: "01", Expected: []string{"81", "82", "01", "02", "84", "04"}},
 	}
 
 	for _, c := range cases {
-		got := getPermutations(c.Number)
+		got := getPermutations(c.Pin)
 		expected := c.Expected
 
 		if !reflect.DeepEqual(expected, got) {

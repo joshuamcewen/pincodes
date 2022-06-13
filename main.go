@@ -5,10 +5,10 @@ import (
 )
 
 // splitDigits parses an integer and returns an array of integers representing each digit.
-func splitDigits(number string) []string {
+func splitDigits(pin string) []string {
 	var digits []string
 
-	for _, digit := range number {
+	for _, digit := range pin {
 		digits = append(digits, string(digit))
 	}
 
@@ -23,12 +23,12 @@ var keypad = [4][3]string{
 }
 
 // getIndexes take a keypad digit and returns the row/column indexes.
-func getIndexes(number string) (int, int) {
+func getIndexes(digit string) (int, int) {
 	var rows, columns = len(keypad), len(keypad[0])
 	var r, c = 0, 0
 
 	for r < rows && c < columns {
-		if keypad[r][c] == number {
+		if keypad[r][c] == digit {
 			break
 		}
 
@@ -44,11 +44,11 @@ func getIndexes(number string) (int, int) {
 }
 
 // getPossibleDigits takes a keypad digit and returns all possible selections.
-func getPossibleDigits(number string) []string {
-	var digits = []string{number}
+func getPossibleDigits(digit string) []string {
+	var digits = []string{digit}
 
 	var rows, columns = len(keypad), len(keypad[0])
-	var r, c = getIndexes(number)
+	var r, c = getIndexes(digit)
 
 	// Left
 	if c-1 >= 0 && keypad[r][c-1] != " " {
@@ -80,8 +80,8 @@ func getPossibleDigits(number string) []string {
 var digitsByWear = []string{"5", "1", "2", "8", "7", "4", "0", "3", "6", "9"}
 
 // getDigitPriority takes a number and generates a numeric priority based on wear.
-func getDigitPriority(number string) int {
-	digits := splitDigits(number)
+func getDigitPriority(pin string) int {
+	digits := splitDigits(pin)
 	priority := 0
 
 	for _, digit := range digits {
@@ -96,8 +96,8 @@ func getDigitPriority(number string) int {
 }
 
 // getPermutations takes a keypad combination and returns all possible permutations, most likely first.
-func getPermutations(number string) []string {
-	digits := splitDigits(number)
+func getPermutations(pin string) []string {
+	digits := splitDigits(pin)
 	var combinations [][]string
 
 	for _, digit := range digits {
