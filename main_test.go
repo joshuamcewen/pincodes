@@ -1,6 +1,7 @@
 package pincodes
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -105,4 +106,9 @@ func TestGetPermutations(t *testing.T) {
 			t.Errorf("Expected: %v, Got: %v", expected, got)
 		}
 	}
+}
+
+func TestGetPermutations97516(t *testing.T) {
+	permutations := getPermutations(97516)
+	fmt.Println(permutations)
 }
