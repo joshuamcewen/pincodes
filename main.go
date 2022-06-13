@@ -33,6 +33,7 @@ var keypad = [4][3]int{
 	{-1, 0, -1},
 }
 
+// getIndexes take a keypad digit and returns the row/column indexes.
 func getIndexes(number int) (int, int) {
 	var rows, columns = len(keypad), len(keypad[0])
 	var r, c = 0, 0
@@ -53,6 +54,7 @@ func getIndexes(number int) (int, int) {
 	return r, c
 }
 
+// getPossibleDigits takes a keypad digit and returns all possible selections.
 func getPossibleDigits(number int) []int {
 	var digits = []int{number}
 
@@ -88,6 +90,7 @@ func getPossibleDigits(number int) []int {
 
 var digitsByWear = []int{5, 1, 2, 8, 7, 4, 0, 3, 6, 9}
 
+// getDigitPriority takes a number and generates a numeric priority based on wear.
 func getDigitPriority(number int) int {
 	digits := splitDigits(number)
 	priority := 0
@@ -103,6 +106,7 @@ func getDigitPriority(number int) int {
 	return priority
 }
 
+// getPermutations takes a keypad combination and returns all possible permutations, most likely first.
 func getPermutations(number int) []int {
 	digits := splitDigits(number)
 	var combinations [][]int
