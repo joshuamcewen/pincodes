@@ -77,6 +77,14 @@ func getPossibleDigits(number int) []int {
 	return digits
 }
 
+var digitsByWear = []int{5, 1, 2, 8, 7, 4, 0, 3, 6, 9}
+
 func getDigitPriority(number int) int {
-	return 0
+	for i, v := range digitsByWear {
+		if v == number {
+			return len(digitsByWear) - i
+		}
+	}
+
+	return -1
 }
